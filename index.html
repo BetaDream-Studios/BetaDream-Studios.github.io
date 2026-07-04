@@ -16,13 +16,13 @@
 
         body {
             font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', sans-serif;
-            background-color: #ffffff; /* Page background */
+            background-color: #ffffff;
             color: #000000;
-            min-height: 200vh; /* Extra height so you can test scrolling over dark areas */
+            min-height: 200vh;
         }
 
         /* ==========================================
-           AUTOMATIC COLOR-CHANGING NAVBAR
+           HEADER LAYER (Default: Light Blur for Light Backgrounds)
            ========================================== */
         .navbar {
             position: fixed;
@@ -31,16 +31,11 @@
             width: 100%;
             height: 60px;
             z-index: 1000;
-            
-            /* 1. Background Blur Layer */
-            background-color: rgba(255, 255, 255, 0.25); 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px); 
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-
-            /* 2. Magic Color Detector Rule */
-            /* This forces everything inside the header to invert its color based on the background */
-            mix-blend-mode: difference; 
+            background-color: rgba(255, 255, 255, 0.75); /* Light translucent background */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .nav-container {
@@ -58,19 +53,13 @@
             align-items: center;
         }
 
-        /* Base configuration for the text and logo must start as white 
-           so 'difference' can accurately flip them to black over light backgrounds */
         .nav-logo {
             height: 32px;
             width: auto;
             display: block;
-            /* Inverts your default black logo image to white initially */
-            filter: invert(1); 
         }
 
-        /* ==========================================
-           DROPDOWN MENU STYLE
-           ========================================== */
+        /* Dropdown Button (Default: Black Text) */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -79,7 +68,7 @@
         .dropbtn {
             background: none;
             border: none;
-            color: #ffffff; /* Starts white, auto-flips to black over light zones */
+            color: #000000; /* Black text default */
             font-family: inherit;
             font-size: 16px;
             font-weight: 900;
@@ -88,6 +77,7 @@
             align-items: center;
             gap: 6px;
             padding: 8px 12px;
+            transition: color 0.3s ease;
         }
 
         .arrow {
@@ -115,7 +105,10 @@
             font-size: 14px;
         }
 
-        /* Hover Actions */
+        .dropdown-content a:hover {
+            background-color: #f3f4f6;
+        }
+
         .dropdown:hover .dropdown-content {
             display: block;
         }
@@ -125,14 +118,28 @@
         }
 
         /* ==========================================
-           HERO SECTION WITH BACKGROUND IMAGE
+           AUTOMATIC DARK MODE FOR HEADER
+           (Triggered when scrolling over dark sections)
            ========================================== */
+        .navbar.over-dark-bg {
+            background-color: rgba(13, 14, 18, 0.75); /* Dark translucent background */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar.over-dark-bg .dropbtn {
+            color: #ffffff; /* Automatically flips text to white */
+        }
+
+        /* ==========================================
+           SECTIONS
+           ========================================== */
+        /* Hero (Light sky area at top matches your mockup layout) */
         .hero-section {
             position: relative;
             width: 100%;
-            height: 70vh; 
-            margin-top: 60px; 
-            background-image: url('images/hero-bg.jpg'); 
+            height: 70vh;
+            margin-top: 60px;
+            background-image: url('images/hero-bg.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -142,31 +149,30 @@
         }
 
         .hero-overlay-text h1 {
-            font-size: clamp(48px, 10vw, 120px); 
+            font-size: clamp(48px, 10vw, 120px);
             font-weight: 900;
             color: #ffffff;
             letter-spacing: -2px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); 
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
             user-select: none;
         }
 
-        /* ==========================================
-           DARK CONTENT SECTION (To test color switching)
-           ========================================== */
+        /* Dark Content Section */
         .dark-section {
-            background-color: #0d0e12; /* Dark section */
-            padding: 100px 24px;
+            background-color: #0d0e12; 
+            padding: 120px 24px;
             text-align: center;
-            min-height: 60vh;
+            min-height: 100vh;
+            color: #ffffff;
         }
     </style>
 </head>
 <body>
 
-    <header class="navbar">
+    <header class="navbar" id="main-header">
         <div class="nav-container">
             <a href="/" class="logo-link">
-                <img src="images/wordmarkblack.png" alt="BetaDream Logo" class="nav-logo">
+                <img src="images/wordmarkblack.png" alt="BetaDream Logo" class="nav-logo" id="logo-image">
             </a>
             <nav>
                 <div class="dropdown">
@@ -187,9 +193,30 @@
         </div>
     </section>
 
-    <section class="dark-section">
+    <section class="dark-section" id="dark-zone">
         <h2>Our Games</h2>
     </section>
+
+    <script>
+        const header = document.getElementById('main-header');
+        const logo = document.getElementById('logo-image');
+        const darkZone = document.getElementById('dark-zone');
+
+        window.addEventListener('scroll', () => {
+            // Checks exactly where the dark section boundary meets the header line (60px)
+            const darkZoneTopPosition = darkZone.getBoundingClientRect().top;
+
+            if (darkZoneTopPosition <= 60) {
+                // We are over the dark section: use white assets
+                header.classList.add('over-dark-bg');
+                logo.src = 'images/wordmarkwhite.png';
+            } else {
+                // We are over the light landscape section: use black assets
+                header.classList.remove('over-dark-bg');
+                logo.src = 'images/wordmarkblack.png';
+            }
+        });
+    </script>
 
 </body>
 </html>
