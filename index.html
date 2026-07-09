@@ -5,68 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webpage</title>
     <style>
-        /* Make the entire background black and remove default margins */
+        /* Reset all margins and paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Pitch black background */
         body {
             background-color: #000000;
             color: #ffffff;
-            margin: 0;
+            font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', sans-serif;
             padding: 20px;
-            font-family: monospace;
-            position: relative;
         }
 
-        /* Container for the numbering track */
-        .number-track {
-            display: flex;
-            flex-direction: column;
-            gap: 15px; 
-            max-width: 100%;
-        }
-
-        /* Label styling for the numbers */
-        .line-label {
-            font-size: 14px;
-            min-width: 20px;
-            user-select: none;
-            height: 20px;
+        /* The actual Navbar at the top */
+        .navbar {
+            width: 100%;
+            height: 60px;
+            border: 1px dashed rgba(255, 255, 255, 0.4); /* Clean layout border */
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            margin-bottom: 20px; /* Pushes content below down */
         }
 
-        /* Header block spanning from the top down to line 2 */
-        .header-block {
-            position: absolute;
-            top: 20px; /* Aligns with body padding */
-            left: 60px; /* Pushes it to the right of the numbers */
-            right: 20px;
-            height: 55px; /* Spans the height covering row 1 down to row 2 */
-            background-color: rgba(255, 255, 255, 0.1); /* Translucent white box */
-            border: 1px dashed #ffffff;
-            display: flex;
-            align-items: center;
-            padding: 0 15px;
+        .nav-logo-placeholder {
+            font-weight: 900;
+            font-size: 18px;
+            letter-spacing: -0.5px;
         }
 
-        .header-title {
-            margin: 0;
+        .nav-links-placeholder {
+            font-weight: 900;
             font-size: 16px;
-            letter-spacing: 1px;
+        }
+
+        /* Next section block blueprint */
+        .content-space {
+            width: 100%;
+            height: 400px;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-family: monospace;
         }
     </style>
 </head>
 <body>
 
-    <div class="number-track">
-        <div class="line-label">1</div>
-        <div class="line-label">2</div>
-        <div class="line-label">3</div>
-        <div class="line-label">4</div>
-        <div class="line-label">5</div>
-    </div>
+    <nav class="navbar">
+        <div class="nav-logo-placeholder">BetaDream</div>
+        <div class="nav-links-placeholder">Home ▼</div>
+    </nav>
 
-    <header class="header-block">
-        <h1 class="header-title">HEADER SPACE</h1>
-    </header>
+    <div class="content-space">
+        NEXT SECTION SPACE
+    </div>
 
 </body>
 </html>
