@@ -12,67 +12,61 @@
             margin: 0;
             padding: 20px;
             font-family: monospace;
+            position: relative;
         }
 
-        /* Container for the lines at the top */
-        .lines-container {
+        /* Container for the numbering track */
+        .number-track {
             display: flex;
             flex-direction: column;
-            gap: 15px; /* Space between each line */
+            gap: 15px; 
             max-width: 100%;
         }
 
-        /* Individual line row layout */
-        .line-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* Label styling */
+        /* Label styling for the numbers */
         .line-label {
             font-size: 14px;
             min-width: 20px;
             user-select: none;
+            height: 20px;
+            display: flex;
+            align-items: center;
         }
 
-        /* The actual horizontal line */
-        .horizontal-line {
-            flex-grow: 1;
-            height: 1px;
-            background-color: #ffffff; /* White line against the black background */
-            border: none;
+        /* Header block spanning from the top down to line 2 */
+        .header-block {
+            position: absolute;
+            top: 20px; /* Aligns with body padding */
+            left: 60px; /* Pushes it to the right of the numbers */
+            right: 20px;
+            height: 55px; /* Spans the height covering row 1 down to row 2 */
+            background-color: rgba(255, 255, 255, 0.1); /* Translucent white box */
+            border: 1px dashed #ffffff;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        .header-title {
+            margin: 0;
+            font-size: 16px;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
 
-    <div class="lines-container">
-        <div class="line-row">
-            <span class="line-label">1</span>
-            <hr class="horizontal-line">
-        </div>
-        
-        <div class="line-row">
-            <span class="line-label">2</span>
-            <hr class="horizontal-line">
-        </div>
-
-        <div class="line-row">
-            <span class="line-label">3</span>
-            <hr class="horizontal-line">
-        </div>
-
-        <div class="line-row">
-            <span class="line-label">4</span>
-            <hr class="horizontal-line">
-        </div>
-
-        <div class="line-row">
-            <span class="line-label">5</span>
-            <hr class="horizontal-line">
-        </div>
+    <div class="number-track">
+        <div class="line-label">1</div>
+        <div class="line-label">2</div>
+        <div class="line-label">3</div>
+        <div class="line-label">4</div>
+        <div class="line-label">5</div>
     </div>
+
+    <header class="header-block">
+        <h1 class="header-title">HEADER SPACE</h1>
+    </header>
 
 </body>
 </html>
