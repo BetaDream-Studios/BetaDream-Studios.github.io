@@ -3,220 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BetaDream</title>
+    <title>Webpage</title>
     <style>
-        /* ==========================================
-           RESET & BASE STYLES
-           ========================================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* Make the entire background black and remove default margins */
         body {
-            font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', sans-serif;
-            background-color: #ffffff;
-            color: #000000;
-            min-height: 200vh;
-        }
-
-        /* ==========================================
-           HEADER LAYER (Default: Light Blur for Light Backgrounds)
-           ========================================== */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 60px;
-            z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.75); /* Light translucent background */
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            height: 100%;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-link {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-logo {
-            height: 32px;
-            width: auto;
-            display: block;
-        }
-
-        /* Dropdown Button (Default: Black Text) */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropbtn {
-            background: none;
-            border: none;
-            color: #000000; /* Black text default */
-            font-family: inherit;
-            font-size: 16px;
-            font-weight: 900;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 12px;
-            transition: color 0.3s ease;
-        }
-
-        .arrow {
-            font-size: 10px;
-            transition: transform 0.2s ease;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            background-color: #ffffff;
-            min-width: 160px;
-            box-shadow: 0px 8px 24px rgba(0,0,0,0.15);
-            border-radius: 8px;
-            overflow: hidden;
-            margin-top: 4px;
-        }
-
-        .dropdown-content a {
-            color: #333333;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-size: 14px;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #f3f4f6;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown:hover .arrow {
-            transform: rotate(180deg);
-        }
-
-        /* ==========================================
-           AUTOMATIC DARK MODE FOR HEADER
-           (Triggered when scrolling over dark sections)
-           ========================================== */
-        .navbar.over-dark-bg {
-            background-color: rgba(13, 14, 18, 0.75); /* Dark translucent background */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .navbar.over-dark-bg .dropbtn {
-            color: #ffffff; /* Automatically flips text to white */
-        }
-
-        /* ==========================================
-           SECTIONS
-           ========================================== */
-        /* Hero (Light sky area at top matches your mockup layout) */
-        .hero-section {
-            position: relative;
-            width: 100%;
-            height: 70vh;
-            margin-top: 60px;
-            background-image: url('images/hero-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero-overlay-text h1 {
-            font-size: clamp(48px, 10vw, 120px);
-            font-weight: 900;
+            background-color: #000000;
             color: #ffffff;
-            letter-spacing: -2px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            margin: 0;
+            padding: 20px;
+            font-family: monospace;
+        }
+
+        /* Container for the lines at the top */
+        .lines-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Space between each line */
+            max-width: 100%;
+        }
+
+        /* Individual line row layout */
+        .line-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Label styling */
+        .line-label {
+            font-size: 14px;
+            min-width: 20px;
             user-select: none;
         }
 
-        /* Dark Content Section */
-        .dark-section {
-            background-color: #0d0e12; 
-            padding: 120px 24px;
-            text-align: center;
-            min-height: 100vh;
-            color: #ffffff;
+        /* The actual horizontal line */
+        .horizontal-line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: #ffffff; /* White line against the black background */
+            border: none;
         }
     </style>
 </head>
 <body>
 
-    <header class="navbar" id="main-header">
-        <div class="nav-container">
-            <a href="/" class="logo-link">
-                <img src="images/wordmarkblack.png" alt="BetaDream Logo" class="nav-logo" id="logo-image">
-            </a>
-            <nav>
-                <div class="dropdown">
-                    <button class="dropbtn">Home <span class="arrow">▼</span></button>
-                    <div class="dropdown-content">
-                        <a href="#games">Games</a>
-                        <a href="#about">About</a>
-                        <a href="#contact">Contact</a>
-                    </div>
-                </div>
-            </nav>
+    <div class="lines-container">
+        <div class="line-row">
+            <span class="line-label">1</span>
+            <hr class="horizontal-line">
         </div>
-    </header>
-
-    <section class="hero-section">
-        <div class="hero-overlay-text">
-            <h1>Image</h1>
+        
+        <div class="line-row">
+            <span class="line-label">2</span>
+            <hr class="horizontal-line">
         </div>
-    </section>
 
-    <section class="dark-section" id="dark-zone">
-        <h2>Our Games</h2>
-    </section>
+        <div class="line-row">
+            <span class="line-label">3</span>
+            <hr class="horizontal-line">
+        </div>
 
-    <script>
-        const header = document.getElementById('main-header');
-        const logo = document.getElementById('logo-image');
-        const darkZone = document.getElementById('dark-zone');
+        <div class="line-row">
+            <span class="line-label">4</span>
+            <hr class="horizontal-line">
+        </div>
 
-        window.addEventListener('scroll', () => {
-            // Checks exactly where the dark section boundary meets the header line (60px)
-            const darkZoneTopPosition = darkZone.getBoundingClientRect().top;
-
-            if (darkZoneTopPosition <= 60) {
-                // We are over the dark section: use white assets
-                header.classList.add('over-dark-bg');
-                logo.src = 'images/wordmarkwhite.png';
-            } else {
-                // We are over the light landscape section: use black assets
-                header.classList.remove('over-dark-bg');
-                logo.src = 'images/wordmarkblack.png';
-            }
-        });
-    </script>
+        <div class="line-row">
+            <span class="line-label">5</span>
+            <hr class="horizontal-line">
+        </div>
+    </div>
 
 </body>
 </html>
